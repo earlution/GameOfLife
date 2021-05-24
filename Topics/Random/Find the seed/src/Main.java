@@ -9,18 +9,23 @@ public class Main {
         int b = scanner.nextInt();
         int n = scanner.nextInt();
         int k = scanner.nextInt();
-        int d = b - a;
-        int[] seeds = new int[k];
+        Integer[] maxSeeds = new Integer[k];
+        Integer[] minSeeds = new Integer[b - a];
+        int max = 0;
+        int min;
         //TODO create two nested for-loop
-        //TODO make external loop to cycle from seed A to seed B
-        for (int i = a; i < b; i++) {
+        //TODO make external loop to cycle from seed A to seed B (inclusive)
+        for (int i = a; i <= b; i++) {
             //TODO internal loop generate N random nums (0, K) and...
             for (int j = 0; j < n; j++) {
-                seeds[j] = random.nextInt(k);
+                maxSeeds[j] = random.nextInt(k);
             }
             //TODO ...find max
-
+            max = Collections.max(Arrays.asList(maxSeeds));
+            minSeeds[i] = max;
         }
-        //TODO record and output first seed for which max from internal loop in min
+        //TODO record and output first seed for which max from internal loop is min
+        min = Collections.min(Arrays.asList(minSeeds));
+        System.out.printf("%d\n%d", max, min);
     }
 }
